@@ -13,3 +13,4 @@ These tokens can then be used with tools like ROADTools to extract AAD informati
 ```
 aadprt [nonce] 
 ```
+# Resource: https://dirkjanm.io/abusing-azure-ad-sso-with-the-primary-refresh-token/
