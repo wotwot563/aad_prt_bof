@@ -6,20 +6,18 @@
 int requestaadprt(LPCWSTR nonce) {
 
 	LPCWSTR uri = L"https://login.microsoftonline.com/";
-
+	wchar_t * full_uri = NULL;
 	// We have a nonce, let's build the URL for it
 	if (nonce != NULL) {
-		INT nonceLen = KERNEL32$lstrlenW(nonce);
-
-		wchar_t baseUri[500] = L"https://login.microsoftonline.com/common/oauth2/authorize?sso_nonce=";
-
-		INT baseUriLen = KERNEL32$lstrlenW(baseUri);
-
-		KERNEL32$lstrcatW(baseUri, nonce);
-
-		internal_printf("baseUri: %ls\n", baseUri);
-
-		uri = baseUri;
+		
+		full_uri = (wchar_t*)MSVCRT$calloc(MSVCRT$wcslen(base_url) + MSVCRT$wcslen(nonce) + 2, sizeof(wchar_t));
+		if(full_uri == NULL){
+			internal_printf("Failed to initialize memory.\n");
+			return 1;
+		}
+		KERNEL32$lstrcpynW(full_uri, base_url, MSVCRT$wcslen(base_url) + MSVCRT$wcslen(nonce));
+		KERNEL32$lstrcatW(full_uri, nonce);
+		uri = full_uri;
 	}
 
 	internal_printf("Using uri: %ls\n", uri);
@@ -67,7 +65,8 @@ int requestaadprt(LPCWSTR nonce) {
 		OLE32$CoTaskMemFree(cookies[i].p3pHeader);
 	}
 	OLE32$CoTaskMemFree(cookies);
-
+	MSVCRT$free(full_uri);
+	
 	internal_printf("DONE\n");
 
 	return 0;
