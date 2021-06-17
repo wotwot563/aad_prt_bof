@@ -10,7 +10,7 @@ These tokens can then be used with tools like ROADTools to extract AAD informati
 
 ## Usage
 
-After compiling, load the (.cna) file into Cobalt Strike.
+After compiling, load the `aadprt.cna` file into Cobalt Strike.
 
 1. Request a nonce using [ROADtoken](https://github.com/dirkjanm/ROADtoken): `roadtoken auth --prt-init`
 2. Request a token on the target machine: `aadprt [NONCE]`
