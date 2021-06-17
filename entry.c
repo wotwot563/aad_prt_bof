@@ -12,6 +12,10 @@ int requestaadprt(const wchar_t* nonce) {
 		const wchar_t * base_url = L"https://login.microsoftonline.com/common/oauth2/authorize?sso_nonce=";
 
 		full_uri = (wchar_t*)MSVCRT$calloc(MSVCRT$wcslen(base_url) + MSVCRT$wcslen(nonce) + 2, sizeof(wchar_t));
+		if(full_uri == NULL){
+			internal_printf("Failed to initialize memory.\n");
+			return 1;
+		}
 		KERNEL32$lstrcpynW(full_uri, base_url, MSVCRT$wcslen(base_url) + MSVCRT$wcslen(nonce));
 		KERNEL32$lstrcatW(full_uri, nonce);
 
@@ -105,6 +109,10 @@ int main(int argc, char *argv[])
 	{
 		size_t length = MSVCRT$strlen(argv[1]) + 1;
 		nonce = (wchar_t*)MSVCRT$calloc(length, sizeof(wchar_t));
+		if(nonce == NULL){
+			internal_printf("Failed to initialize memory.\n");
+			return 1;
+		}
 		MSVCRT$mbstowcs_s(NULL, nonce, length, argv[1], length - 1);
 	}else{
 		nonce = NULL;
