@@ -9,6 +9,7 @@ int requestaadprt(LPCWSTR nonce) {
 	wchar_t * full_uri = NULL;
 	// We have a nonce, let's build the URL for it
 	if (nonce != NULL) {
+		const wchar_t * base_url = L"https://login.microsoftonline.com/common/oauth2/authorize?sso_nonce=";
 		
 		full_uri = (wchar_t*)MSVCRT$calloc(MSVCRT$wcslen(base_url) + MSVCRT$wcslen(nonce) + 2, sizeof(wchar_t));
 		if(full_uri == NULL){
