@@ -5,6 +5,7 @@ These tokens can then be used with tools like ROADTools to extract AAD informati
 
 ### How to compile:
 `make` for the beacon object files
+
 `make test` for an executable
 
 #### After compiling, load the (.cna) file to Cobalt Strike.
