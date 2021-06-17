@@ -29,11 +29,11 @@ alias aadprt_s{
 		berror($1, beacon_command_detail("aadprt"));
 		return;
 	}
-	beacon_inline_execute($1, readbof($1, "aadprt_s"), "go",  bof_pack($1, "Z", $2));
+	beacon_inline_execute($1, readbof($1, "aadprt"), "go",  bof_pack($1, "Z", $2));
 }
 
 beacon_command_register(
-	"aadprt_s",
+	"aadprt",
 	"get azure AD PRT token",
 	"aadprt <nonce>"
 );

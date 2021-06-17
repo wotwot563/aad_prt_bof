@@ -1,4 +1,4 @@
-BOFNAME := aadprt_s
+BOFNAME := aadprt
 LIBINCLUDE := -l ole32
 COMINCLUDE := -I headers
 # COMINCLUDE := -I ../../common
