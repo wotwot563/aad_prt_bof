@@ -33,19 +33,19 @@ int requestaadprt(LPCWSTR nonce) {
 
 	HRESULT hr = OLE32$CoInitializeEx(NULL, 0x0);
 	if (FAILED(hr))	{
-		internal_printf("CoInitialize error: %d\n", hr);
+		internal_printf("CoInitialize error: 0x%04x\n", hr);
 		return 0;
 	}
 
 	hr = OLE32$CoCreateInstance(&CLSID_ProofOfPossessionCookieInfoManager, NULL, CLSCTX_INPROC_SERVER, &IID_IProofOfPossessionCookieInfoManager, (void**)(&popCookieManager));
 	if (FAILED(hr))	{
-		internal_printf("CoCreateInstance error: %d\n", hr);;
+		internal_printf("CoCreateInstance error: 0x%4x\n", hr);;
 		return 0;
 	}
 
 	hr = popCookieManager->lpVtbl->GetCookieInfoForUri(popCookieManager, uri, &cookieCount, &cookies);
 	if (FAILED(hr))	{
-		internal_printf("GetCookieInfoForUri error: %d\n", hr);
+		internal_printf("GetCookieInfoForUri error: 0x%4x\n", hr);
 		return 0;
 	}
 
