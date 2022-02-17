@@ -32,6 +32,9 @@ int requestaadprt(LPCWSTR nonce) {
 	OLE32$IIDFromString(L"{CDAECE56-4EDF-43DF-B113-88E4556FA1BB}", &IID_IProofOfPossessionCookieInfoManager);
 
 	HRESULT hr = OLE32$CoInitializeEx(NULL, 0x0);
+	if (hr == RPC_E_CHANGED_MODE){
+		hr = OLE32$CoInitializeEx(NULL, 0x2);	
+	}
 	if (FAILED(hr))	{
 		internal_printf("CoInitialize error: 0x%04x\n", hr);
 		return 0;
