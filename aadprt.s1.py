@@ -3,7 +3,7 @@ from typing import List, Tuple
 from outflank_stage1.task.base_bof_task import BaseBOFTask
 from outflank_stage1.task.enums import BOFArgumentEncoding
 
-class PsmBOF(BaseBOFTask):
+class AadPRTBOF(BaseBOFTask):
     def __init__(self):
         super().__init__("aadprt", base_binary_name="aadprt")
         self.parser.description = "Request an Azure AD PRT."
