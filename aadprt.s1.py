@@ -11,4 +11,4 @@ class PsmBOF(BaseBOFTask):
 
     def _encode_arguments_bof(self, arguments: List[str]) -> List[Tuple[BOFArgumentEncoding, str]]:
         parser_arguments = self.parser.parse_args(arguments)
-        return [(BOFArgumentEncoding.str, parser_arguments.nonce)]
+        return [(BOFArgumentEncoding.WSTR, parser_arguments.nonce)]
