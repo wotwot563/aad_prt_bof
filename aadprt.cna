@@ -12,7 +12,7 @@ alias aadprt {
     $barch  = barch($1);
 
     # read in the right BOF file
-    $handle = openf(script_resource("bin/aadprt. $+ $barch $+ .o"));
+    $handle = openf(script_resource("aadprt. $+ $barch $+ .o"));
     $data   = readb($handle, -1);
     closef($handle);
 
